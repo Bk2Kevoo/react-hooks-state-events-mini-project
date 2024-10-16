@@ -1,15 +1,28 @@
 import React from "react";
-import Task from "./Task"
+import Task from "./Task";
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, onRemove, onTaskFormSubmit }) {
 
-  const mappedTasks = tasks.map((taskObject, index) => <Task key={index} taskObject={taskObject}/>)
+  const taskElements = tasks.map((task) => (
+    <Task
+      key={task.text}
+      text={task.text}
+      category={task.category}
+      onRemove={onRemove}
+      onTaskFormSubmit={onTaskFormSubmit}
+    // onCategoryChange={onCategoryChange}
+
+    />
+  )
+  )
 
   return (
     <div className="tasks">
-      {mappedTasks}
+      {taskElements}
     </div>
   );
 }
 
 export default TaskList;
+
+
